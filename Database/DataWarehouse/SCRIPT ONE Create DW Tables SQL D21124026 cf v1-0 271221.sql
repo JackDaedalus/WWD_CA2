@@ -27,23 +27,29 @@ DROP TABLE dw_dimtblCallEvent;
 
 --Create Customer Dimensions
 CREATE TABLE dw_dimtblCustomer(
-CustomerPhoneKey  NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1 NOCACHE) NOT NULL,
-Phone_Number  VARCHAR2(26) NOT NULL,
-PRIMARY KEY (CustomerPhoneKey)
+    CustomerPhoneKey  NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
+    Phone_Number      VARCHAR2(26) NOT NULL,
+    Plan_Desc         VARCHAR2(15) NOT NULL,
+    PRIMARY KEY (CustomerPhoneKey)
 );
 
 --Create Call Event Dimensions
 CREATE TABLE dw_dimtblCallEvent(
-CallEventKey  INT NOT NULL,
-Connection_ID VARCHAR2(128) NOT NULL,
-PRIMARY KEY (CallEventKey)
+    CallEventKey    NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
+    Connection_ID   VARCHAR2(128) NOT NULL,
+    Call_Event_Type VARCHAR2(25) NOT NULL,
+    PRIMARY KEY (CallEventKey)
 );
 
 --Create Date Dimensions
 CREATE TABLE dw_dimtblDateTime(
-DateTimeKey  INT NOT NULL,
-CalendarDate  DATE NOT NULL,
-PRIMARY KEY (DateTimeKey)
+    DateTimeKey     NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
+    CalendarDate    VARCHAR2(26) NOT NULL,
+    Call_Event_Date Date NULL,
+    Call_TStamp     Timestamp NULL,
+    Day_of_Week_Num INT NULL,
+    Tbl_Source      VARCHAR2(26) NULL,
+    PRIMARY KEY (DateTimeKey)
 );
 
 
@@ -57,10 +63,13 @@ PRIMARY KEY (DateTimeKey)
 
 
 CREATE TABLE dw_facttblCallRevenue(
-    FactID          NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
-    DateTimeKey     INT NOT NULL,   
-    Customer_Key    INT NOT NULL,
-    CallEvent_Key   INT NOT NULL,
+    FactID          	NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
+    DateTimeKey     	INT NOT NULL,   
+    Customer_Key    	INT NOT NULL,
+    CallEvent_Key   	INT NOT NULL,
+	Cost_Per_Minute		NUMBER,
+	Call_Event_Duration NUMBER,
+	Call_Event_Charge	NUMBER,
     CONSTRAINT timedate_fk FOREIGN KEY (DateTimeKey) 
         REFERENCES dw_dimtblDateTime(DateTimeKey), 
     CONSTRAINT customer_fk FOREIGN KEY (Customer_Key) 
