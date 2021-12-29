@@ -11,23 +11,37 @@
 /*	Populate the CUSTOMER Dimension Tables							*/
 /*	------------------------------------------------------  	*/
 
-INSERT INTO dw_dimtblCustomer(Phone_Number,Plan_Desc)
+INSERT INTO dw_dimtblCustomer(Phone_Number,Plan_Desc,Plan_ID)
     SELECT 
         c.Phone_Number,
-        p.name
+        p.name,
+        p.id
     FROM TBLCUSTOMERS c, TBLCONTRACTPLANS p
     WHERE c.plan_id = p.id;
+
+
+/* There is an erroneous duplication in the CUSTOMER Table
+   Removing any duplicate phone entries to avoid future
+   issues with populating FACT table or SQL queries             */
+   
+/* Delete the duplicate but keep one entry                      */
+DELETE FROM dw_dimtblCustomer a
+WHERE ROWID <
+    (SELECT max(rowid)
+     FROM dw_dimtblCustomer b
+     WHERE a.Phone_Number = b.Phone_Number);
 
 
 /*	------------------------------------------------------  	*/
 /*	Populate the Call Event Dimension Tables							*/
 /*	------------------------------------------------------  	*/
 
-INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type)
+INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type, Call_Event_ID)
     
     SELECT 
         cs.connection_id,
-        rt.name
+        rt.name,
+        rt.id
     FROM TBLCUSTOMERSERVICE cs, TBLRATETYPES rt
     WHERE cs.call_type_id = rt.id
     
@@ -35,13 +49,16 @@ INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type)
 
     SELECT 
         vm.connection_id,
-        rt.name
+        rt.name,
+        rt.id
     FROM TBLVOICEMAILS vm, TBLRATETYPES rt
     WHERE vm.call_type_id = rt.id
     
     UNION
 
-    SELECT ctypes.connection_id, rt.name
+    SELECT  ctypes.connection_id, 
+            rt.name,
+            ctypes.call_type
         
         FROM (
         

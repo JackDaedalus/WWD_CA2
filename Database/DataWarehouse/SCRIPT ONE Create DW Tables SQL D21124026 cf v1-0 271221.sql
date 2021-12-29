@@ -30,6 +30,7 @@ CREATE TABLE dw_dimtblCustomer(
     CustomerPhoneKey  NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
     Phone_Number      VARCHAR2(26) NOT NULL,
     Plan_Desc         VARCHAR2(15) NOT NULL,
+    Plan_ID           NUMBER(38,0),
     PRIMARY KEY (CustomerPhoneKey)
 );
 
@@ -38,6 +39,7 @@ CREATE TABLE dw_dimtblCallEvent(
     CallEventKey    NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
     Connection_ID   VARCHAR2(128) NOT NULL,
     Call_Event_Type VARCHAR2(25) NOT NULL,
+    Call_Event_ID   NUMBER(38,0),
     PRIMARY KEY (CallEventKey)
 );
 
@@ -67,8 +69,8 @@ CREATE TABLE dw_facttblCallRevenue(
     DateTimeKey     	INT NOT NULL,   
     Customer_Key    	INT NOT NULL,
     CallEvent_Key   	INT NOT NULL,
-	Cost_Per_Minute		NUMBER,
-	Call_Event_Duration NUMBER,
+	Cost_Per_Minute		NUMBER(4,2),
+	Call_Event_Duration NUMBER(38,7),
 	Call_Event_Charge	NUMBER,
     CONSTRAINT timedate_fk FOREIGN KEY (DateTimeKey) 
         REFERENCES dw_dimtblDateTime(DateTimeKey), 
