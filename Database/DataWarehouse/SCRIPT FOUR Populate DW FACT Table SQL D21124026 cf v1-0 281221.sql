@@ -45,7 +45,7 @@ INSERT INTO stage_FACT_Tbl
         rt.name
     FROM TBLCUSTOMERSERVICE cs, TBLRATETYPES rt
     WHERE cs.call_type_id = rt.id
-    AND cs.phone_number in ('046 046 7698','066 425 0664','029 706 4631')
+
     
     UNION
 
@@ -57,7 +57,7 @@ INSERT INTO stage_FACT_Tbl
         rt.name
     FROM TBLVOICEMAILS vm, TBLRATETYPES rt
     WHERE vm.call_type_id = rt.id
-    AND vm.phone_number in ('046 046 7698','066 425 0664','029 706 4631')
+ 
     
     UNION
 
@@ -118,7 +118,7 @@ INSERT INTO stage_FACT_Tbl
                     CASE WHEN (c.Is_International = 'FALSE') THEN 0 ELSE 3 END   Int_Call,
                     CASE WHEN (c.Is_Roaming       = 'FALSE') THEN 0 ELSE 4 END   Roam_Call
                 FROM TBLCALLS c
-                WHERE c.phone_number in ('046 046 7698','066 425 0664','029 706 4631')
+
                                 
                 ) calls
                 
@@ -194,6 +194,12 @@ INSERT INTO dw_facttblCallRevenue
 /* ---   Add Additional Calculated values to FACT Table   --- */
 /* ---                                                              --- */
 
+
+/* ---	Add 'Cost Per Minute' Charge to FACT Tanle rows   			---	*/
+
+/* --- Join FACT Table with Call Event and Customer DIM Tables and  --- */
+/* --- read / update appropriate value from Call Rates table        --- */ 
+
 UPDATE dw_facttblCallRevenue a
 SET a.Cost_Per_Minute = 
     (SELECT b.Cost_Per_Minute 
@@ -216,6 +222,14 @@ WHERE EXISTS
         );
 
 
+/* ---	Add 'Call Event Charge' to FACT Table rows      			---	*/
+
+/* --- Update based on Duration and Call Type Rate                  --- */
+/* --- This attribute is added to FACT Table to improve/simplry     --- */ 
+/* --- subsequent SQL business report queries                       --- */
+UPDATE dw_facttblCallRevenue
+SET Call_Event_Charge = ((Call_Event_Duration/60) * Cost_Per_Minute);
+
 
 /*	------------------------------------------------------  	*/
 /*	Temp Test SQL to check FACT Table Values  				*/
@@ -227,23 +241,8 @@ WHERE EXISTS
 SELECT count(*) FROM stage_FACT_Tbl;
 SELECT count(*) FROM dw_facttblCallRevenue;
 
-/*
-select Connection_ID, CALLEVENT_KEY FROM stage_FACT_Tbl order by connection_id;
-select Phone_Number, Customer_Key FROM stage_FACT_Tbl order by Phone_Number;
-select Call_Time, DateTimeKey FROM stage_FACT_Tbl order by Call_Time;
 
-
-select DateTimeKey, Customer_Key, CallEvent_Key 
-FROM stage_FACT_Tbl 
-order by DateTimeKey;
-*/
-
-select FactID, DateTimeKey, Customer_Key, CallEvent_Key, 
-    Call_Event_Duration, 
-    Cost_Per_Minute
-FROM dw_facttblCallRevenue 
-order by DateTimeKey
-fetch first 25 row only;
-
-/*TRUNCATE TABLE dw_facttblCallRevenue;*/
+/*	------------------------------------------------------  	*/
+/*	Clear Down the Fact Stageing Table          				*/
+/*	------------------------------------------------------  	*/
 TRUNCATE TABLE stage_FACT_Tbl;

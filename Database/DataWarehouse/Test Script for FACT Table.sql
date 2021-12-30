@@ -1,15 +1,15 @@
 select * from dw_dimtblCallEvent
 where calleventkey
-in (155169)
+in (180327)
 order by connection_id; 
 
 
 select * from dw_dimtblCustomer where CustomerPhoneKey
-in (4446);
+in (2723);
 
 
 select * from dw_dimtblDateTime where DateTimeKey
-in (1507)
+in (1345)
 order by DATETIMEKEY desc;
 
 
@@ -173,9 +173,7 @@ WHERE EXISTS
         );
 
 
-select * FROM dw_facttblCallRevenue;
 
-select * FROM dw_facttblCallRevenue where CallEvent_Key in (15838);
 
 
 UPDATE stage_FACT_Tbl a
@@ -190,5 +188,11 @@ WHERE EXISTS
      WHERE b.CalendarDate = a.Call_Time);  
   
      
-     
+UPDATE dw_facttblCallRevenue
+SET Call_Event_Charge = ((Call_Event_Duration/60) * Cost_Per_Minute);
+
+
+select * FROM dw_facttblCallRevenue;
+
+select * FROM dw_facttblCallRevenue where CallEvent_Key in (15838);
 

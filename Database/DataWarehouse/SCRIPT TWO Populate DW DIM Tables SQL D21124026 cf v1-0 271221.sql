@@ -33,11 +33,20 @@ WHERE ROWID <
 
 
 /*	------------------------------------------------------  	*/
-/*	Populate the Call Event Dimension Tables							*/
+/*	Populate the Call Event Dimension Tables					*/
 /*	------------------------------------------------------  	*/
 
+
+/* ---  A 'Call Event; is any operation supported by the telecoms
+        company on this aspect of the database schema
+        
+        Therefoe the Call Event Dimentsion Table is a UNION
+        of phone call, voice mail, and Customer Service events
+        into a single DIM table                                 --- */
+        
 INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type, Call_Event_ID)
     
+    /*--- Capture Customer Services Calls to Customers      ---*/
     SELECT 
         cs.connection_id,
         rt.name,
@@ -47,6 +56,7 @@ INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type, Call_Event_ID)
     
     UNION
 
+    /*--- Capture Voicemails from Customers                  ---*/
     SELECT 
         vm.connection_id,
         rt.name,
@@ -56,6 +66,7 @@ INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type, Call_Event_ID)
     
     UNION
 
+    /*--- Capture actual phone calls from Customers          ---*/
     SELECT  ctypes.connection_id, 
             rt.name,
             ctypes.call_type
@@ -120,19 +131,7 @@ INSERT INTO dw_dimtblCallEvent(Connection_ID, Call_Event_Type, Call_Event_ID)
 /*	Temp Test SQL to check DIM Values  						    */
 /*	------------------------------------------------------  	*/
 
-/*
-select * 
-FROM dw_dimtblCustomer
-WHERE Phone_Number in ('046 046 7698','01 227 9959','01 112 1838');
-
-select * 
-FROM dw_dimtblCallEvent
-WHERE call_event_type = 'roaming';
-*/
 
 select count(*) FROM dw_dimtblCustomer;
 select count(*) FROM dw_dimtblCallEvent;
 
-/*
-TRUNCATE TABLE dw_dimtblCustomer;
-TRUNCATE TABLE dw_dimtblCallEvent;*/

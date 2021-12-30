@@ -71,7 +71,7 @@ CREATE TABLE dw_facttblCallRevenue(
     CallEvent_Key   	INT NOT NULL,
 	Cost_Per_Minute		NUMBER(4,2),
 	Call_Event_Duration NUMBER(38,7),
-	Call_Event_Charge	NUMBER,
+	Call_Event_Charge	NUMBER(20,2),
     CONSTRAINT timedate_fk FOREIGN KEY (DateTimeKey) 
         REFERENCES dw_dimtblDateTime(DateTimeKey), 
     CONSTRAINT customer_fk FOREIGN KEY (Customer_Key) 
