@@ -56,9 +56,12 @@ INSERT INTO dw_dimtblDateTime(CalendarDate, Tbl_Source)
 /* ---                                                              --- */
 
 UPDATE dw_dimtblDateTime
-    SET Call_Event_Date = TO_DATE(SUBSTR(CalendarDate,1,8), 'DD-MM-YY'),
-        Call_TStamp     = TO_TIMESTAMP(CalendarDate,'DD-MM-YY HH24:MI'),
-        Day_of_Week_Num = TO_NUMBER(TO_CHAR(TO_DATE(SUBSTR(CalendarDate,1,8), 'DD-MM-YY'), 'D','NLS_DATE_LANGUAGE = ENGLISH') , 9);
+    SET Call_Event_Date     = TO_DATE(SUBSTR(CalendarDate,1,8), 'DD-MM-YY'),
+        Call_TStamp         = TO_TIMESTAMP(CalendarDate,'DD-MM-YY HH24:MI'),
+        Day_of_Week_Num     = TO_NUMBER(TO_CHAR(TO_DATE(SUBSTR(CalendarDate,1,8), 'DD-MM-YY'), 'D','NLS_DATE_LANGUAGE = ENGLISH') , 9);
+        
+UPDATE dw_dimtblDateTime
+    SET Month_of_Year_Num   = EXTRACT(month FROM CALL_EVENT_DATE);
 
 
 

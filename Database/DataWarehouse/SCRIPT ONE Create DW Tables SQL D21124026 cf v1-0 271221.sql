@@ -45,12 +45,13 @@ CREATE TABLE dw_dimtblCallEvent(
 
 --Create Date Dimensions
 CREATE TABLE dw_dimtblDateTime(
-    DateTimeKey     NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
-    CalendarDate    VARCHAR2(26) NOT NULL,
-    Call_Event_Date Date NULL,
-    Call_TStamp     Timestamp NULL,
-    Day_of_Week_Num INT NULL,
-    Tbl_Source      VARCHAR2(26) NULL,
+    DateTimeKey         NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
+    CalendarDate        VARCHAR2(26) NOT NULL,
+    Call_Event_Date     Date NULL,
+    Call_TStamp         Timestamp NULL,
+    Month_of_Year_Num   INT NULL,
+    Day_of_Week_Num     INT NULL,
+    Tbl_Source          VARCHAR2(26) NULL,
     PRIMARY KEY (DateTimeKey)
 );
 

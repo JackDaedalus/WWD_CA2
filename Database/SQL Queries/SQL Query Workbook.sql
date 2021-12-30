@@ -45,25 +45,4 @@ select sum(call_event_charge) from dw_facttblCallRevenue
 where Customer_Key in (4181);
 
 
-
-
-SELECT Customer_Phone, Total_Revenue
-
-FROM
-(
-    SELECT      a.phone_number as Customer_Phone, 
-                SUM(c.call_event_charge) as Total_Revenue
- 
-    FROM        dw_dimtblCustomer a,
-                dw_dimtblDateTime b,
-                dw_facttblCallRevenue c
-                
-    WHERE       a.customerphonekey  = c.Customer_Key
-    AND         b.datetimekey       = c.datetimekey
-    /*AND         b.call_event_date   > '01-MAR-21'*/
- 
-    GROUP BY    a.phone_number
-
-)
-ORDER BY Total_Revenue DESC
-fetch first 100 row only;
+SELECT EXTRACT(month FROM CALL_EVENT_DATE) FROM dw_dimtblDateTime;
