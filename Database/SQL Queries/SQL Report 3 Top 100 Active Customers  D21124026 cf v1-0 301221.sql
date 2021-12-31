@@ -12,7 +12,7 @@ alter session set NLS_DUAL_CURRENCY = '€';
 /* --- SQL REPORT THREE : Top 100 Customers From Last Month - By Activity   */
 SET sqlformat ansiconsole;
 
-/*---           Add Title to SQL REPORT ONE Ouptut                    ---*/
+/*---           Add Title to SQL REPORT THREE Ouptut                    ---*/
 TTITLE LEFT 'SQL REPORT THREE -  Top 100 Customers From Last 30 Days - By Activity' SKIP 1 
 
 
@@ -60,4 +60,4 @@ FROM
 )
 /*--- Order and limit query to show Top 100 entries by customer activity ---*/
 ORDER BY Total_Activity_Last_30_Days_Duration DESC
-fetch first 3 row only;
+fetch first 100 row only;

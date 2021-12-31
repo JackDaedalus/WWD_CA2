@@ -31,6 +31,7 @@ CREATE TABLE dw_dimtblCustomer(
     Phone_Number      VARCHAR2(26) NOT NULL,
     Plan_Desc         VARCHAR2(15) NOT NULL,
     Plan_ID           NUMBER(38,0),
+    Social_Class      VARCHAR(26),
     PRIMARY KEY (CustomerPhoneKey)
 );
 

@@ -52,11 +52,6 @@ CREATE TABLE plan_rev_per_month AS
 
 /*---           Format Column Output of Report for Presentation       ---*/
 
-/*--- Clear any lingering formatting  ---*/
-COLUMN January clear  
-COLUMN February clear 
-COLUMN March clear 
-COLUMN April clear 
 /*--- Format Columns for output  ---*/
 COLUMN CONTRACT_DESC              FORMAT A13 HEADING 'Contract Plan|Description' 
 COLUMN January                    FORMAT A13 HEADING 'January|Revenue (€)' 

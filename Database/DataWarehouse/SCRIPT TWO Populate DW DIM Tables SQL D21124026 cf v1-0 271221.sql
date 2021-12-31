@@ -11,13 +11,22 @@
 /*	Populate the CUSTOMER Dimension Tables							*/
 /*	------------------------------------------------------  	*/
 
-INSERT INTO dw_dimtblCustomer(Phone_Number,Plan_Desc,Plan_ID)
+INSERT INTO dw_dimtblCustomer(Phone_Number,
+                              Plan_Desc,
+                              Plan_ID,
+                              Social_Class)
     SELECT 
         c.Phone_Number,
         p.name,
-        p.id
-    FROM TBLCUSTOMERS c, TBLCONTRACTPLANS p
-    WHERE c.plan_id = p.id;
+        p.id,
+        s.social_class
+    
+    FROM    TBLCUSTOMERS     c, 
+            TBLCONTRACTPLANS p,
+            TBLSOCIALGRADE   s
+    
+    WHERE   c.plan_id   = p.id
+    AND     c.nrs       = s.grade;
 
 
 /* There is an erroneous duplication in the CUSTOMER Table

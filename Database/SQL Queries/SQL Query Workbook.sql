@@ -14,6 +14,10 @@ fetch first 10 row only;
 select * from dw_dimtblDateTime
 fetch first 10 row only;
 
+select * from dw_dimtblCallEvent
+fetch first 10 row only;
+
+
 select min(call_event_date) from dw_dimtblDateTime;
 select max(call_event_date) from dw_dimtblDateTime;
 

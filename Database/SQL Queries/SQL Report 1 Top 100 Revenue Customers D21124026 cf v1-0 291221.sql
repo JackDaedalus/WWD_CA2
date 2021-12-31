@@ -61,4 +61,4 @@ FROM
 )
 /*--- Order and limit query to show Top 100 entries by customer charge ---*/
 ORDER BY Total_Revenue_Last_30_Days DESC
-fetch first 3 row only;
+fetch first 100 row only;
