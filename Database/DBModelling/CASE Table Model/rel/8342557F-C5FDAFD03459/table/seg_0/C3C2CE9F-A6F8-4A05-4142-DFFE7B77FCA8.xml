@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C3C2CE9F-A6F8-4A05-4142-DFFE7B77FCA8" name="dw_CaseMLChurn_tbl">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:00:09 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CaseID" id="08E5B208-8D05-7FE7-70A4-3F6534C6C4BA">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:02:05 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Phone_Number" id="53305C8C-757F-32E1-B592-2C75322A453A">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:33:31 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26</dataTypeSize>
+<ownDataTypeParameters>26,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Customer_Age" id="416ED553-DF61-0101-9A39-B259FE000D8D">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:30:19 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Plan_ID" id="5920B9FA-96F5-D390-9A5E-3F426E303F93">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:37:25 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Social_Class" id="674F2E0D-92D5-3D8A-95A4-4F3AE85D2CA2">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:38:36 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26</dataTypeSize>
+<ownDataTypeParameters>26,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D44416E1-EE03-586D-3FFA-2B64EC66DA9E" name="dw_CaseMLChurn_tbl_PK">
+<createdBy>New User</createdBy>
+<createdTime>2022-01-02 16:02:05 UTC</createdTime>
+<ownerDesignName>CASE Table Model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="08E5B208-8D05-7FE7-70A4-3F6534C6C4BA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
