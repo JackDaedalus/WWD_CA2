@@ -14,12 +14,16 @@
 INSERT INTO dw_dimtblCustomer(Phone_Number,
                               Plan_Desc,
                               Plan_ID,
-                              Social_Class)
+                              Social_Class,
+                              Customer_Age,
+                              Out_of_Contract)
     SELECT 
         c.Phone_Number,
         p.name,
         p.id,
-        s.social_class
+        s.social_class,
+        trunc(months_between(TRUNC(sysdate), to_date(c.dob))/12) as Customer_Age,
+        CASE WHEN (c.contract_end_date is null) THEN 'N' ELSE 'Y' END as Out_of_Contract
     
     FROM    TBLCUSTOMERS     c, 
             TBLCONTRACTPLANS p,

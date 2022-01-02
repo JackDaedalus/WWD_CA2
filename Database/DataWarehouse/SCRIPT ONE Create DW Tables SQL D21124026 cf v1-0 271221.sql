@@ -32,6 +32,8 @@ CREATE TABLE dw_dimtblCustomer(
     Plan_Desc         VARCHAR2(15) NOT NULL,
     Plan_ID           NUMBER(38,0),
     Social_Class      VARCHAR(26),
+    Customer_Age      INT,
+    Out_of_Contract   VARCHAR2(1) DEFAULT 'Y',
     PRIMARY KEY (CustomerPhoneKey)
 );
 
