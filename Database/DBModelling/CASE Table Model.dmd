@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="CASE Table Model" id="D88DFB3C-0B16-1A46-9CC8-D605B3B9D043" version="3.5">
-<createdBy>New User</createdBy>
-<createdTime>2022-01-02 15:58:44 UTC</createdTime>
-<ownerDesignName>CASE Table Model</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>D88DFB3C-0B16-1A46-9CC8-D605B3B9D043</designId>
-</OSDM_Design>
