@@ -4,13 +4,11 @@
 
 /* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
 
-
-
-
-
 /* SQL to create the data warehouse Dimension tables for WWD CA2 */
-
-
+/*  This code is added because these scripts were run many time during 
+    development of the assignment data warehouse. This would clear/reset
+    table structures. Including here will generate an error message during
+    an initial run but not prevent the creation of the date warehouse tables */
 DROP TABLE dw_facttblCallRevenue;
 DROP TABLE dw_dimtblDateTime;
 DROP TABLE dw_dimtblCustomer;
@@ -18,10 +16,10 @@ DROP TABLE dw_dimtblCallEvent;
 
 
 
-
 /*	------------------------------------------------------  	*/
 
-/*	Create the Dimension Tables							    */
+/*	Create the Dimension Tables - Described in Section 3.1.3 of 
+    the assignment report.                                      */
 
 /*	------------------------------------------------------  	*/
 
@@ -62,10 +60,10 @@ CREATE TABLE dw_dimtblDateTime(
 
 /*	------------------------------------------------------  	*/
 
-/*	Create the Fact Table - to capture Revenue/Charge measurements	    */
+/*	Create the Fact Table - Described in Section 3.1.4 of 
+    the assignment report.                                      */
 
 /*	------------------------------------------------------  	*/
-
 
 
 CREATE TABLE dw_facttblCallRevenue(

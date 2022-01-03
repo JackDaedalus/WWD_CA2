@@ -2,7 +2,8 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+														- January 2022			*/
 
 
 /* SQL to populate the Date TIME DIMENSION data warehouse tables for WWD CA2 */
@@ -70,9 +71,5 @@ UPDATE dw_dimtblDateTime
 /*	Temp Test SQL to check Date Time DIM Values  				*/
 /*	------------------------------------------------------  	*/
 
-
-/*select * FROM dw_dimtblDateTime;*/
-
 SELECT count(*) FROM dw_dimtblDateTime;
 
-/*TRUNCATE TABLE dw_dimtblDateTime;*/

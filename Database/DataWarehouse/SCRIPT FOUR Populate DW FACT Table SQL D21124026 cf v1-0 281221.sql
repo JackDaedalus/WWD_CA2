@@ -2,7 +2,8 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+                                                        - January 2022			*/
 
 
 /* SQL to populate the FACT data warehouse tables for WWD CA2 */
@@ -37,6 +38,7 @@ INSERT INTO stage_FACT_Tbl
          Call_Event_Duration,
          Rate_Name)
     
+    /*-- Start with Customer Services table data --*/
     SELECT 
         cs.connection_id,
         cs.phone_number,
@@ -48,7 +50,8 @@ INSERT INTO stage_FACT_Tbl
 
     
     UNION
-
+    
+    /*-- Add Voicemail table data --*/
     SELECT 
         vm.connection_id,
         vm.phone_number,
@@ -61,6 +64,9 @@ INSERT INTO stage_FACT_Tbl
     
     UNION
 
+    /*-- Add Call table data - converting TRUE/FALSE flags for
+         Roaming/International and checking call times for converting
+         to codes for Peak/Off-Peak--*/
     SELECT  ctypes.connection_id,
             ctypes.phone_number,
             ctypes.call_time,
@@ -203,19 +209,19 @@ INSERT INTO dw_facttblCallRevenue
 UPDATE dw_facttblCallRevenue a
 SET a.Cost_Per_Minute = 
     (SELECT b.Cost_Per_Minute 
-     FROM TBLCALLRATES b, 
-        dw_dimtblCallEvent c, 
-        dw_dimtblCustomer d
-     WHERE b.call_type_id      = c.call_event_id
+     FROM TBLCALLRATES      b, 
+        dw_dimtblCallEvent  c, 
+        dw_dimtblCustomer   d
+     WHERE b.call_type_id           = c.call_event_id
         AND     b.plan_id           = d.plan_id
         AND     c.calleventkey      = a.CallEvent_Key
         AND     d.customerphonekey  = a.Customer_Key
      )
 WHERE EXISTS 
     (SELECT * FROM TBLCALLRATES b, 
-        dw_dimtblCallEvent c, 
-        dw_dimtblCustomer d
-     WHERE b.call_type_id      = c.call_event_id
+        dw_dimtblCallEvent      c, 
+        dw_dimtblCustomer       d
+     WHERE b.call_type_id           = c.call_event_id
         AND     b.plan_id           = d.plan_id
         AND     c.calleventkey      = a.CallEvent_Key
         AND     d.customerphonekey  = a.Customer_Key
@@ -229,17 +235,6 @@ WHERE EXISTS
 /* --- subsequent SQL business report queries                       --- */
 UPDATE dw_facttblCallRevenue
 SET Call_Event_Charge = ((Call_Event_Duration/60) * Cost_Per_Minute);
-
-
-/*	------------------------------------------------------  	*/
-/*	Temp Test SQL to check FACT Table Values  				*/
-/*	------------------------------------------------------  	*/
-
-
-
-
-SELECT count(*) FROM stage_FACT_Tbl;
-SELECT count(*) FROM dw_facttblCallRevenue;
 
 
 /*	------------------------------------------------------  	*/

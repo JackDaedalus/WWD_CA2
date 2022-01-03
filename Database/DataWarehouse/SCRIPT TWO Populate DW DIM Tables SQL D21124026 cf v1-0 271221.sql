@@ -2,7 +2,8 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+																- January 2022			*/
 
 
 /* SQL to populate the DIMENSION data warehouse tables for WWD CA2 */
