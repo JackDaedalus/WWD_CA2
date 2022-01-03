@@ -88,14 +88,10 @@ INSERT INTO dw_CaseMLChurn_tbl
 /*	------------------------------------------------------  	*/
 /*	Temp Test SQL to check FACT Table Values  				*/
 /*	------------------------------------------------------  	*/
-
+/*
 SELECT * FROM dw_CaseMLChurn_tbl;
 
 
 SELECT count(*) FROM dw_CaseMLChurn_tbl;
+*/
 
-
-/*	------------------------------------------------------  	*/
-/*	Clear Down the Fact Stageing Table          				*/
-/*	------------------------------------------------------  	*/
-TRUNCATE TABLE dw_CaseMLChurn_tbl;

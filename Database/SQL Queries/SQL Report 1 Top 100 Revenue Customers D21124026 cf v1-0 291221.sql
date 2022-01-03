@@ -23,7 +23,7 @@ TTITLE LEFT 'SQL REPORT ONE -  Top 100 Customers From 30 Days - By Revenue' SKIP
 COLUMN Report_Start_Dt              HEADING 'Report Start Date' 
 COLUMN Report_End_Dt                HEADING 'Report End Date' 
 COLUMN Customer_Phone               FORMAT A15 HEADING 'Customer|Phone Number'
-COLUMN Total_Revenue_Last_30_Days   FORMAT  U9999.99  HEADING 'Total Revenue Generated|Last 30 Days'  
+COLUMN Total_Revenue_Last_30_Days   FORMAT  9999.99  HEADING 'Total Revenue Generated|Last 30 Days(€)'  
 
 
 
