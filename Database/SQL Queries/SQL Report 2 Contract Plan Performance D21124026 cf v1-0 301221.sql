@@ -1,25 +1,17 @@
 /* Ciaran Finnegan 	: Student No. D21124026										*/
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
-
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
-
-/* -- Set SQL Session to try and pick up EURO Currency symbols   */
-alter session set NLS_ISO_CURRENCY='IRELAND';
-alter session set NLS_DUAL_CURRENCY = '€';
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+                                                        - January 2022			*/
 
 /* --- SQL REPORT TWO  : Contract Plan Peformance - By Month/Revenue   */
-/*SET sqlformat ansiconsole;*/
-/*SET sqlformat default;*/
-
 
 /*---           Add Title to SQL REPORT ONE Ouptut                    ---*/
 TTITLE LEFT 'SQL REPORT TWO -  Contract Plan Peformance - By Month/Revenue' SKIP 1 
 
-
-/*--- Set up a temporary table to capture the data warehouse contract ---*/
+/*--- Set up a VIEW to capture the data warehouse contract ---*/
 /*--- plan date for the last four months (the complete data range)    ---*/
-CREATE TABLE plan_rev_per_month AS
+CREATE OR REPLACE VIEW plan_rev_per_month_v AS
 
     /*--- Select Contract Plan Description and Sum of Charges --- */
     SELECT  Contract_Desc, 
@@ -41,7 +33,8 @@ CREATE TABLE plan_rev_per_month AS
                     
         WHERE       a.customerphonekey  = c.Customer_Key
         AND         b.datetimekey       = c.datetimekey
-        AND         b.Month_of_Year_Num in (1,2,3,4) /*-- All four months in data warehouse ---*/
+        AND         b.Month_of_Year_Num in (1,2,3,4) /*-- All four months in 
+                                                            data warehouse ---*/
      
         GROUP BY    a.plan_desc, a.plan_id, b.Month_of_Year_Num
     
@@ -64,12 +57,10 @@ COLUMN April                      FORMAT A13 HEADING 'April|Revenue (€)'
 /*--- for the Contract Plan Revenue Report.  The PIVOT function avoids the ---*/
 /*--- for more complex joins or unions to present the revenue data         ---*/
 
-select * from plan_rev_per_month /*-- Use temp table for report presentation --*/
+select * from plan_rev_per_month_v /*-- Use temp table for report presentation --*/
 PIVOT (
     sum(MONTHLY_REVENUE) for REV_MONTH in (1 "January",2 "February",3 "March",4 "April")
     )
 order by CONTRACT_DESC;    
 
 
-/*--- Remove temporary report table --*/
-DROP TABLE plan_rev_per_month;

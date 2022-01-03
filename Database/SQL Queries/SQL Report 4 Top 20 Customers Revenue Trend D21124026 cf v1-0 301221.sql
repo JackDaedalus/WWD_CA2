@@ -1,28 +1,20 @@
 /* Ciaran Finnegan 	: Student No. D21124026										*/
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
-
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
-
-/* -- Set SQL Session to try and pick up EURO Currency symbols   */
-alter session set NLS_ISO_CURRENCY='IRELAND';
-alter session set NLS_DUAL_CURRENCY = '€';
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+                                                        - January 2022			*/
 
 /* --- SQL REPORT Four  : Revenue Pattersn of Top 20 APRIL Customers --- */
-
-DROP TABLE Customer_Revenue_Profile;
-DROP TABLE Customer_Revenue_Profile_Report;
-
 
 /*---           Add Title to SQL REPORT FOUR Ouptut                    ---*/
 TTITLE LEFT 'SQL REPORT FOUR - YTD Revenue Patterns of Top 20 APRIL Customers' SKIP 1 
 
+/*--- Set up a VIEW to capture the data warehouse customer ---*/
+/*--- revenue patterns for the last four months (the complete data range) ---*/
 
-/*--- Set up a temporary table to capture the data warehouse customer ---*/
-/*--- revenue pattersn for the last four months (the complete data range) ---*/
-CREATE TABLE Customer_Revenue_Profile AS
-  
-    /*-- Focus on Top 20 customers in April and extract full YTD breakdown --*/
+CREATE OR REPLACE VIEW Customer_Revenue_Profile AS
+
+     /*-- Focus on Top 20 customers in April and extract full YTD breakdown --*/
     SELECT      a.phone_number as Customer_Phone, 
                 SUM(c.call_event_charge) as Monthly_Revenue,
                 b.Month_of_Year_Num as Month_Number
@@ -37,7 +29,8 @@ CREATE TABLE Customer_Revenue_Profile AS
     AND         b.Month_of_Year_Num in (1,2,3,4) /*-- All YTD data ---*/
     AND         a.phone_number      IN
                 (
-                /*--- Select Customer Phone Numbers based on Sum of Charges in April--- */
+                /*--- Select Customer Phone Numbers based on Sum of Charges in 
+                                                                     April--- */
                 SELECT Cust_Number
                 
                 FROM
@@ -52,7 +45,8 @@ CREATE TABLE Customer_Revenue_Profile AS
                                 
                     WHERE       d.customerphonekey  = f.Customer_Key
                     AND         e.datetimekey       = f.datetimekey
-                    AND         e.Month_of_Year_Num in (4) /*-- Last Month (April) ---*/
+                    AND         e.Month_of_Year_Num in (4) /*-- Last Month 
+                                                                    (April) ---*/
                  
                     GROUP BY    d.phone_number
                 
@@ -67,6 +61,9 @@ CREATE TABLE Customer_Revenue_Profile AS
 
 
 /*-- Use temp table for report presentation --*/
+/*-- This Table will use PIVOT to invert results of previous query  --*/
+/*-- A Table is used instead of a view because a new column will be 
+     add to capture YTD Revenue performance                         --*/
 CREATE TABLE Customer_Revenue_Profile_Report AS
 
     /*--- Invert Columns/Rows from Customer Revenue Query ---*/ 
@@ -96,7 +93,6 @@ SET YTD_Revenue = (Customer_Revenue_Profile_Report."January"
                    + Customer_Revenue_Profile_Report."April");
 
 
-
 /*---  Display the YTD Revenue Report for Top 20 April Customers  ---*/
 SET sqlformat ansiconsole;
 /*---           Format Column Output of Report for Presentation       ---*/
@@ -111,3 +107,5 @@ COLUMN YTD_REVENUE                FORMAT A13 HEADING 'YTD|Revenue(€)'
 SELECT * FROM Customer_Revenue_Profile_Report
 ORDER BY ytd_revenue DESC; /*---  Highest Revenue Customers First   ---*/
 
+
+DROP TABLE Customer_Revenue_Profile_Report;

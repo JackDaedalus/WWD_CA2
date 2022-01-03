@@ -2,7 +2,8 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+                                                        - January 2022			*/
 
 /* --- SQL REPORT FIVE  : Contract Plan Moving Average Revenue YTD  */
 
@@ -47,7 +48,7 @@ SET sqlformat ansiconsole;
 COLUMN CONTRACT_DESC          FORMAT A13 HEADING 'Contract Plan|Description' 
 COLUMN rev_month              FORMAT A8  HEADING 'Month|In Year'  
 COLUMN monthly_revenue        FORMAT A13 HEADING 'Revenue That|Month (€)' 
-COLUMN Plan_Moving_Avg        FORMAT A25 HEADING 'Trend: Moving Monthly|Average - Per Plan (€)'
+COLUMN Plan_Moving_Avg        FORMAT A25 HEADING 'Trend: Moving Monthly|Average-Per Plan(€)'
 
 
 /*---  Moving Averages are based on the change in monthly revenue from  ---*/
@@ -56,21 +57,24 @@ COLUMN Plan_Moving_Avg        FORMAT A25 HEADING 'Trend: Moving Monthly|Average 
 
 /*---  Moving Average Report Table for STANDARD Contract Plan       ---*/
 SELECT Contract_Desc, rev_month, monthly_revenue, AVG(monthly_revenue)
-OVER (ORDER BY rev_month, monthly_revenue ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS Plan_Moving_Avg
+OVER (ORDER BY rev_month, monthly_revenue ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) 
+                                                                AS Plan_Moving_Avg
 FROM plan_rev_per_month
 WHERE Contract_Desc = ('standard')
 ORDER BY rev_month;
 
 /*---  Moving Average Report Table for OFF-PEAK Contract Plan       ---*/
 SELECT Contract_Desc, rev_month, monthly_revenue, AVG(monthly_revenue)
-OVER (ORDER BY rev_month, monthly_revenue ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS Plan_Moving_Avg
+OVER (ORDER BY rev_month, monthly_revenue ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) 
+                                                                AS Plan_Moving_Avg
 FROM plan_rev_per_month
 WHERE Contract_Desc = ('off peak')
 ORDER BY rev_month;
 
 /*---  Moving Average Report Table for COSMOPOLITAN Contract Plan       ---*/
 SELECT Contract_Desc, rev_month, monthly_revenue, AVG(monthly_revenue)
-OVER (ORDER BY rev_month, monthly_revenue ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) AS Plan_Moving_Avg
+OVER (ORDER BY rev_month, monthly_revenue ROWS BETWEEN 4 PRECEDING AND CURRENT ROW) 
+                                                                AS Plan_Moving_Avg
 FROM plan_rev_per_month
 WHERE Contract_Desc = ('cosmopolitan')
 ORDER BY rev_month;

@@ -1,19 +1,16 @@
 /* Ciaran Finnegan 	: Student No. D21124026										*/
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
-
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
-
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+                                                        - January 2022			*/
 
 /* --- SQL REPORT SIX : Customers Most Contacted by Customer Service    ---*/
 /* --- This query can be correlated against other queries to show if    ---*/
 /* --- Customer Service contact impacts on revenue and/or is influenced ---*/
 /* --- by the social class of the customer                              ---*/
 
-
 /*---           Add Title to SQL REPORT SIX Ouptut                    ---*/
 TTITLE LEFT 'SQL REPORT SIX -  100 Most Contacted Customers in 2021 (YTD)' SKIP 1 
-
 
 SET sqlformat ansiconsole;
 
@@ -21,8 +18,6 @@ SET sqlformat ansiconsole;
 COLUMN Customer_Phone     FORMAT A13 HEADING 'Customer|Phone Number'
 COLUMN Social_Class       FORMAT A23 HEADING 'Customer|Socio-economic Group'
 COLUMN TOTAL_ACTIVITY_YTD FORMAT A32 HEADING 'Total Customer Services Activity|With Customer(In Minutes)' 
----*/
-
 
 /*-- Select Phone Number, Social Class and Sum of Duration for Customer -- */
 /*--- Service Calls i Year To date - 2021                               -- */
