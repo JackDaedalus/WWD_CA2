@@ -1,9 +1,8 @@
 /* Ciaran Finnegan 	: Student No. D21124026										*/
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
-
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
-
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two
+                                                        - January 2022			*/
 
 /* SQL to compute the Confusion Matrix fron the Naive Bayes model when applied  */
 /* to the customer churn Machine Learning predicitve analysis requirement		*/

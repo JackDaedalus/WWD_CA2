@@ -2,7 +2,8 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+														- January 2022			*/
 
 
 /* SQL to Train Decision Tree model for the ML Section of WWD CA2  */
@@ -46,6 +47,11 @@ BEGIN
     /*-- Drop previous version of model          --*/
     /* May cause error on first run */
     DBMS_DATA_MINING.DROP_MODEL(churn_model_name);
+
+
+
+
+
 
     /*-- Create/re-create model, using training data sampple extracted      --*/
     /*-- from the CASE table prepared for this ML customer churn analysis   --*/

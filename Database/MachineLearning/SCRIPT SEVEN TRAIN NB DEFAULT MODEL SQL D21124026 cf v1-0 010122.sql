@@ -2,10 +2,11 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+                                                        - January 2022			*/
 
 
-/* SQL to Train Default Naive Bayes  for the ML Section of WWD CA2  */
+/* SQL to Train Default Naive Bayes for the ML Section of WWD CA2  */
 /* Default Classificatin Model being used for initial ML Analysis   */
 /* on possibility of Customer churn, based on metrics at end of     */
 /* this given month in the data warehouse                           */

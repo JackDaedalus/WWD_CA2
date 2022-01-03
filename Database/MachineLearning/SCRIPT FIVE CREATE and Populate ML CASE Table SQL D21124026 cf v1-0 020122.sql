@@ -1,22 +1,23 @@
 /* Ciaran Finnegan 	: Student No. D21124026										*/
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
-
 /* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
 
 
 /* SQL to populate the CASE table for the ML Section of WWD CA2 */
 
-
 /*	------------------------------------------------------  	*/
-
 /*	                Create the ML CASE Table     	            */
 /*	Capture customer Profile/Revenue/Activity measurements      */
-
 /*	------------------------------------------------------  	*/
-drop TABLE dw_CaseMLChurn_tbl;
+/* Done to clear down existing table */
+/* Will generate error message on first run  but not prevent Case table creation*/
+drop TABLE dw_CaseMLChurn_tbl; 
 
-
+/* -- Create CASE Table  ---*/
+/* -- Sections 6.1 and 6.2 of the assignment report explain the CASE 
+      Table design and layout in detail. These values provide the input
+      data to the Machine Learning analytical process for customer churn ---*/
 CREATE TABLE dw_CaseMLChurn_tbl(
     CaseID              NUMBER GENERATED ALWAYS as IDENTITY(START with 1000 INCREMENT by 1 NOCACHE) NOT NULL,
     phone_number        VARCHAR2(26 CHAR) NOT NULL,
@@ -85,13 +86,4 @@ INSERT INTO dw_CaseMLChurn_tbl
                 a.out_of_contract;
 
 
-/*	------------------------------------------------------  	*/
-/*	Temp Test SQL to check FACT Table Values  				*/
-/*	------------------------------------------------------  	*/
-/*
-SELECT * FROM dw_CaseMLChurn_tbl;
-
-
-SELECT count(*) FROM dw_CaseMLChurn_tbl;
-*/
 

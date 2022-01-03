@@ -2,7 +2,8 @@
 /* TUD - Class TU060 - MSc In Science (Data Science) - Part Time - First Year 	*/
 
 
-/* Data Warehouse Design and Implementation : Working With Data - Assignment Two - January 2022			*/
+/* Data Warehouse Design and Implementation : Working With Data - Assignment Two 
+														- January 2022			*/
 
 
 /* SQL to populate the TRAIN and TEST tables for the ML Section of WWD CA2 */
@@ -14,8 +15,6 @@
 CREATE OR REPLACE VIEW CaseTrainSample_ml_v as
     select * from dw_CaseMLChurn_tbl sample (80) SEED (1000);
 
-
-
 /*-- CREATE A View for the Test Sample for the ML Analysis              --*/
 /*-- This code takes the remaining entries in the CASE table            --*/
 /*-- and treats them as new data to apply and verify aginst             --*/
@@ -26,31 +25,3 @@ CREATE OR REPLACE VIEW CaseTestSample_ml_v as
                         Select caseid 
                         from   CaseTrainSample_ml_v);  
 
-
-
-
-
-/*
-select count(*) from dw_CaseMLChurn_tbl where out_of_contract = 'N';
-select count(*) from dw_CaseMLChurn_tbl where out_of_contract = 'Y';
-
-
-select count(*) from  CaseTrainSample_ml_v where out_of_contract = 'N';
-select count(*) from  CaseTrainSample_ml_v where out_of_contract = 'Y';
-
-
-select count(*) from  CaseTestSample_ml_v where out_of_contract = 'N';
-select count(*) from  CaseTestSample_ml_v where out_of_contract = 'Y';
-
-
-
-
-select count(*) from  CaseTrainSample_ml_v;
-select count(*) from  CaseTestSample_ml_v;
-
-
-
-select * from CaseTestSample_ml_v;
-
-DESCRIBE CaseTrainSample_ml_v;
-*/
