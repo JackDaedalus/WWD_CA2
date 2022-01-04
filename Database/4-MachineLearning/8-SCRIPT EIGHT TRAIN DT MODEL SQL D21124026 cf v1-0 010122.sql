@@ -45,8 +45,8 @@ BEGIN
 
 
     /*-- Drop previous version of model          --*/
-    /* May cause error on first run */
-    DBMS_DATA_MINING.DROP_MODEL(churn_model_name);
+	/* THIS LINE MUST BE UNCOMMENTED IF THE SCRIPT IS RUN MORE THAN ONCE */
+    /*DBMS_DATA_MINING.DROP_MODEL(churn_model_name);*/
 
 
 

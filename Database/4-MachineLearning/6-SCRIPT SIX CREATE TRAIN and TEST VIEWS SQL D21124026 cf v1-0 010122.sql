@@ -6,7 +6,7 @@
 														- January 2022			*/
 
 
-/* SQL to populate the TRAIN and TEST tables for the ML Section of WWD CA2 */
+/* SQL to populate the TRAIN and TEST VIEWS for the ML Section of WWD CA2 */
 
 
 /*-- CREATE A View for the Training Sample for the ML Analysis          --*/
